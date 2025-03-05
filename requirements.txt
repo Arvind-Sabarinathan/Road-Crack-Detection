@@ -2,7 +2,7 @@ streamlit
 tensorflow
 keras
 numpy
-opencv-python
+opencv-python-headless
 matplotlib
 scikit-learn
 fpdf
