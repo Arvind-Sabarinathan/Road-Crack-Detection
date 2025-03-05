@@ -5,3 +5,5 @@ numpy
 opencv-python
 matplotlib
 scikit-learn
+fpdf
+reportlab
