@@ -11,6 +11,7 @@ from io import BytesIO
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
 from reportlab.lib.utils import ImageReader
+from huggingface_hub import hf_hub_download
 
 # ---- Define Dice Coefficient & Loss ----
 def dice_coef(y_true, y_pred, smooth=1):
@@ -22,10 +23,15 @@ def dice_coef(y_true, y_pred, smooth=1):
 def dice_loss(y_true, y_pred):
     return 1 - dice_coef(y_true, y_pred)
 
+MODEL_PATH = hf_hub_download(
+    repo_id="Arvind-Sabarinathan/crack_detection_unet",
+    filename="crack_detection_unet.h5",
+    cache_dir="./models"
+)
 # ---- Load the trained U-Net model ----
 @st.cache_resource
 def load_unet_model():
-    return load_model("./models/crack_detection_unet.h5", custom_objects={"dice_coef": dice_coef, "dice_loss": dice_loss})
+    return load_model(MODEL_PATH, custom_objects={"dice_coef": dice_coef, "dice_loss": dice_loss})
 
 unet = load_unet_model()
 
