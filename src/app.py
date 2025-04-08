@@ -26,7 +26,8 @@ def dice_loss(y_true, y_pred):
 MODEL_PATH = hf_hub_download(
     repo_id="Arvind-Sabarinathan/crack_detection_unet",
     filename="crack_detection_unet.h5",
-    cache_dir="./models"
+    cache_dir="./models",
+    force_download = True
 )
 # ---- Load the trained U-Net model ----
 @st.cache_resource
